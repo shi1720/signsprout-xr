@@ -54,5 +54,13 @@ an entirely new build or imply sponsor endorsement.
 
 ## Submission status
 
-Not yet submitted. Login and review of the form's eligibility declarations are
-required before submission.
+Submitted successfully on 5 October 2026.
+
+**Submission ID: OVTS1-2026-116**
+
+Direction 03: VR / XR / AR; online participation. No optional Tool Tracks.
+The confirmation page states: "Your Project Has Been Submitted!"
+
+Account review: https://activity.tripo3d.ai/en/submit/fe5a1a2da84a4ff3?step=review
+
+Prior-work and third-party disclosures were included. Judges determine eligibility.
