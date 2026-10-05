@@ -1,0 +1,101 @@
+# Setting up Signsprout
+
+The headset app and the companion site work with no backend at all: learners
+can practise, grow a garden and keep progress on the device. Accounts, sync,
+phone pairing, family sharing and the practice coach need a free Supabase project.
+
+## 1. Supabase (accounts, sync, pairing, coach)
+
+**Time: about 5 minutes. Cost: free tier.**
+
+1. Sign up at [supabase.com](https://supabase.com) (the GitHub sign-in is the
+   quickest).
+2. Open **Account → Access Tokens**
+   ([supabase.com/dashboard/account/tokens](https://supabase.com/dashboard/account/tokens))
+   and choose **Generate new token**. Name it `signsprout` and copy it. It
+   starts with `sbp_`.
+3. Run, from the repository root:
+
+   ```bash
+   SUPABASE_ACCESS_TOKEN=sbp_your_token \
+   SITE_URL=https://shi1720.github.io/signsprout-xr \
+   node tools/setup-backend.mjs
+   ```
+
+   The script creates a project called `signsprout` (or reuses one if you set
+   `SUPABASE_PROJECT_REF`), applies the schema, deploys the `pair`, `share` and
+   `coach` functions, allows sign-in redirects to your site, and writes the
+   public URL and key to `apps/web/.env.production.local` and
+   `apps/xr/.env.production.local`. It prints the database password once; keep
+   it in a password manager.
+
+4. Optional, for nicer sign-in emails: **Authentication → Emails → SMTP
+   settings**. Supabase's built-in email service only sends a few emails an
+   hour, which is fine for testing.
+
+### The practice coach (optional)
+
+Without a key the coach uses a built-in rules planner, so the feature always
+works. To use Gemini:
+
+1. Sign in at [aistudio.google.com](https://aistudio.google.com) with a Google
+   account → **Get API key** → **Create API key**.
+2. Either pass `GEMINI_API_KEY=...` to `tools/setup-backend.mjs`, or add it
+   later in Supabase under **Edge Functions → Secrets**. `GEMINI_MODEL`
+   (default `gemini-flash-latest`) picks the model.
+
+Claude works too: set `ANTHROPIC_API_KEY` (and optionally `COACH_MODEL`)
+instead. If both keys are set, Gemini is tried first.
+
+The coach sends the model only the goal a parent types and a summary of which
+signs the learner knows. No names, emails or hand data. On Google's free tier,
+prompts may be used to improve Google's products. Before launch, turn on
+billing for the key's Cloud project so the paid-tier data terms apply.
+
+## 2. Build and deploy
+
+```bash
+npm install
+npm run build:site     # ./dist: companion site at /, headset app at /app/
+```
+
+`./dist` is a static site and can go on any HTTPS host.
+
+### GitHub Pages (used for the competition build)
+
+Pages on a private repository needs a paid GitHub plan. On a public repository:
+**Settings → Pages → Source: GitHub Actions**, then run the **Deploy site**
+workflow from the **Actions** tab. The site appears at
+`https://<user>.github.io/<repo>/`, with the headset app at `/app/`. The
+workflow only runs when started by hand, so nothing redeploys by accident after
+the submission deadline.
+
+If you forked the repo, set `VITE_WEB_URL` (the pairing address shown in the
+headset) in `apps/xr/.env.production` to your own site.
+
+### Any other static host
+
+```bash
+npx surge ./dist your-name.surge.sh
+```
+
+## 3. Testing on a Quest
+
+1. Open `https://shi1720.github.io/signsprout-xr/app/` in the Quest browser.
+2. Tap **Start learning**, put the controllers down, and follow Sprout.
+3. To test pairing: in the headset, **Home → Save my garden** shows a code.
+   On a phone, open the companion site, sign in with an email link, choose
+   **Pair a headset** and enter the code.
+
+For development on a headset, run `npm run dev --workspace apps/xr` and open
+the network URL it prints (same Wi-Fi), accepting the local certificate
+warning.
+
+## 4. Tripothon edition
+
+Deploy using the repository's manual GitHub Pages workflow. This edition is a
+local-first preview with no shared production backend credentials. The first
+lesson, dictionary, garden and sample dashboard work without an account.
+Configure your own Supabase instance if you need accounts, pairing and sync.
+
+See `docs/submission/TRIPOTHON.md` for submission details.
