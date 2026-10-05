@@ -10,12 +10,21 @@ hands help the learner follow, and feedback explains handshape, position and
 movement. Each completed sign grows a plant in a garden that reflects practice
 and review. It is a gift of a patient place to begin communicating together.
 
+## Validation
+
+- Type checks and production build passed.
+- 68 unit and backend tests passed.
+- Deployed landing, dictionary, sample planner and asset board passed browser smoke checks.
+- Recorded the actual emulated immersive session through the three-sign lesson to the summary.
+- Physical-headset testing and Deaf-signer review remain outstanding.
+
 ## Judge links
 
 - Companion: https://shi1720.github.io/signsprout-xr/
 - Immersive app: https://shi1720.github.io/signsprout-xr/app/
 - Desktop walkthrough: https://shi1720.github.io/signsprout-xr/app/?demo&fresh
 - Visual asset board: https://shi1720.github.io/signsprout-xr/tripothon/
+- Unlisted walkthrough (1:07): https://youtu.be/S4wYpoodMuU
 - Source: https://github.com/shi1720/signsprout-xr
 
 ## How to try
@@ -36,7 +45,8 @@ practice aid, not a translator or replacement for Deaf teachers.
 
 ## Existing work disclosure
 
-This entry adapts Shivam Gupta's existing Signsprout prototype, previously
+Original Git commits record development on 28–29 September 2026, within the
+published submission period. This entry adapts Shivam Gupta's existing Signsprout prototype, previously
 prepared for another hackathon. The learning engine, curriculum, scene and
 companion features predate the Tripothon adaptation. This edition changes the
 contest presentation, deployment and supporting materials. It does not claim

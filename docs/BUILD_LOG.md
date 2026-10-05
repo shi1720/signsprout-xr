@@ -15,5 +15,8 @@ not represent those features as newly built during Tripothon.
 
 ## Validation
 
-Validation results are recorded in the submission kit after checks complete.
+Type checks, all 68 tests and production builds passed. Hosted browser smoke
+checks passed for the landing page, dictionary, sample planner and asset board.
+The new continuous walkthrough reaches the three-sign lesson summary in an
+emulated immersive session.
 Physical-headset and Deaf-signer validation remain outstanding.

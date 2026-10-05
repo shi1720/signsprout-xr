@@ -13,6 +13,7 @@ Meta Quest.
 
 [**Try it on Quest**](https://shi1720.github.io/signsprout-xr/app/) ·
 [Companion site](https://shi1720.github.io/signsprout-xr/) ·
+[Demo video](https://youtu.be/S4wYpoodMuU) ·
 [Submission kit](docs/submission/TRIPOTHON.md) ·
 [How it works](docs/ARCHITECTURE.md)
 
